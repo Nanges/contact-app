@@ -14,7 +14,7 @@ const routes: Routes = [
         component: ContactFormComponent,
     },
     {
-        path: 'edit/:contactId',
+        path: ':contactId',
         resolve: {
             contact: ContactResolver,
         },

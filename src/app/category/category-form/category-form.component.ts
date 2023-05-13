@@ -43,26 +43,26 @@ export class CategoryFormComponent {
                 ? this.categoryService.create(this.form.value['category'])
                 : this.categoryService.update(this.index, this.form.value['category']);
 
-            handler.subscribe(() => this.router.navigate(['categories']));
+            handler.subscribe(() => this.router.navigate(['..'], { relativeTo: this.route }));
         }
     }
 
     cancelHandler() {
         if (this.form.pristine) {
-            this.router.navigate(['categories']);
+            this.router.navigate(['..'], { relativeTo: this.route });
             return;
         }
 
         this.confirmService
             .confirm(`You are leaving`, `You are going to leave with unsaved work. Do you wish to continue ?`)
-            .subscribe(() => this.router.navigate(['categories']));
+            .subscribe(() => this.router.navigate(['..'], { relativeTo: this.route }));
     }
 
     removeHandler() {
         this.confirmService
             .confirm(`Remove category "${this.category}"`, `You are going to remove category "${this.category}". Do you wish to continue ?`)
             .pipe(switchMap(() => this.categoryService.remove(this.index)))
-            .subscribe(() => this.router.navigate(['categories']));
+            .subscribe(() => this.router.navigate(['..'], { relativeTo: this.route }));
     }
 
     private buildForm() {

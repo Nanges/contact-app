@@ -46,19 +46,19 @@ export class ContactFormComponent {
                 ? this.contactService.create(this.form.value)
                 : this.contactService.update(this.index, this.form.value);
 
-            handler.subscribe(() => this.router.navigate(['contacts']));
+            handler.subscribe(() => this.router.navigate(['..'], { relativeTo: this.route }));
         }
     }
 
     cancelHandler() {
         if (this.form.pristine) {
-            this.router.navigate(['contacts']);
+            this.router.navigate(['..'], { relativeTo: this.route });
             return;
         }
 
         this.confirmService
             .confirm(`You are leaving`, `You are going to leave with unsaved work. Do you wish to continue ?`)
-            .subscribe(() => this.router.navigate(['contacts']));
+            .subscribe(() => this.router.navigate(['..'], { relativeTo: this.route }));
     }
 
     removeHandler() {
@@ -68,7 +68,7 @@ export class ContactFormComponent {
                 `You are going to remove contact "${this.contact.firstname} ${this.contact.lastname}". Do you wish to continue ?`
             )
             .pipe(switchMap(() => this.contactService.remove(this.index)))
-            .subscribe(() => this.router.navigate(['contacts']));
+            .subscribe(() => this.router.navigate(['..'], { relativeTo: this.route }));
     }
 
     private buildForm() {
