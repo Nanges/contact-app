@@ -1,5 +1,17 @@
-<main class="container">
-    <header class="main-header">
-        <h1>Add category</h1>
-    </header>
-</main>
+<app-edition-layout [layoutTitle]="creationMode ? 'Add category' : 'Edit category'">
+    <app-remove-button tooltip="Remove this category" *ngIf="!creationMode"></app-remove-button>
+    <form [formGroup]="form">
+        <div class="form-field-wrapper">
+            <mat-form-field appearance="outline">
+                <mat-label>Category</mat-label>
+                <input matInput placeholder="Category" formControlName="category" />
+                <mat-error *ngIf="form.get('category')?.invalid">This field is required</mat-error>
+            </mat-form-field>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="action-bar content-end">
+            <button mat-button type="button">Cancel</button>
+            <button mat-raised-button color="primary" type="submit">Save</button>
+        </div>
+    </form>
+</app-edition-layout>

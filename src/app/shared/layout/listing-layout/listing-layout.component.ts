@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'app-listing-layout',
@@ -6,6 +6,4 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ListingLayoutComponent {
     @Input() layoutTitle!: string;
-    @Input() addLabel!: string;
-    @Output() add = new EventEmitter();
 }

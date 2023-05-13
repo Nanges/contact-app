@@ -24,3 +24,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
         margin: 0px 1rem 0px 0px;
     }
 }
+
+.form-field-wrapper{
+    display:block;
+    margin-bottom: 1rem;
+}
+
+.action-bar{
+    display:flex;
+    gap:.5rem;
+    padding-top:1rem;
+    padding-bottom: 1rem;
+}
+
+.content-end{
+    justify-content: end;
+}
