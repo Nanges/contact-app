@@ -15,8 +15,4 @@ export class CategoryListComponent {
     constructor(private router: Router, private route: ActivatedRoute, private categoryService: CategoryService) {
         this.categories$ = this.categoryService.getCategories();
     }
-
-    addCategory() {
-        this.router.navigate(['add'], { relativeTo: this.route });
-    }
 }

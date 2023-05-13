@@ -18,8 +18,4 @@ export class ContactListComponent {
     constructor(private router: Router, private route: ActivatedRoute, private contactService: ContactService) {
         this.contacts$ = this.contactService.getContacts();
     }
-
-    addContact() {
-        this.router.navigate(['add'], { relativeTo: this.route });
-    }
 }
