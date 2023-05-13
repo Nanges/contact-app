@@ -1,3 +1,6 @@
 <app-listing-layout layoutTitle="Categories">
     <app-add-button routerLink="add" tooltip="Add category"></app-add-button>
+    <mat-action-list>
+        <a mat-list-item [routerLink]="['edit', id]" *ngFor="let category of categories$ | async; let id = index">{{ category }}</a>
+    </mat-action-list>
 </app-listing-layout>
