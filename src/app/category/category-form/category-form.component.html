@@ -1,6 +1,6 @@
 <app-edition-layout [layoutTitle]="creationMode ? 'Add category' : 'Edit category'">
-    <app-remove-button tooltip="Remove this category" *ngIf="!creationMode"></app-remove-button>
-    <form [formGroup]="form">
+    <app-remove-button tooltip="Remove this category" *ngIf="!creationMode" (click)="removeHandler()"></app-remove-button>
+    <form [formGroup]="form" (ngSubmit)="saveHandler()">
         <div class="form-field-wrapper">
             <mat-form-field appearance="outline">
                 <mat-label>Category</mat-label>

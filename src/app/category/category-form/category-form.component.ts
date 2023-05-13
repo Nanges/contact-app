@@ -31,6 +31,27 @@ export class CategoryFormComponent {
         }
     }
 
+    saveHandler() {
+        this.creationMode ? this.createHandler() : this.updateHandler();
+    }
+
+    removeHandler() {
+        if (confirm('Are you sure ?')) {
+            this.categoryService.remove(this.index);
+            this.router.navigate(['categories']);
+        }
+    }
+
+    private createHandler() {
+        this.categoryService.create(this.form.value['category']).subscribe(() => this.router.navigate(['../'], { relativeTo: this.route }));
+    }
+
+    private updateHandler() {
+        this.categoryService
+            .update(this.index, this.form.value['category'])
+            .subscribe(() => this.router.navigate(['../'], { relativeTo: this.route }));
+    }
+
     private buildForm() {
         return new FormGroup({
             category: new FormControl(null, Validators.required),
