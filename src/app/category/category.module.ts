@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { ListingLayoutModule } from '../shared/layout/listing-layout/listing-layout.module';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryRoutingModule } from './category-routing.module';
+import { CategoryFormComponent } from './category-form/category-form.component';
 
 @NgModule({
-    declarations: [CategoryListComponent],
+    declarations: [CategoryListComponent, CategoryFormComponent],
     imports: [CommonModule, CategoryRoutingModule, ListingLayoutModule],
 })
 export class CategoryModule {}
