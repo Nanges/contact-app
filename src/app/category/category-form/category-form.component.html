@@ -11,7 +11,7 @@
         <mat-divider></mat-divider>
         <div class="action-bar content-end">
             <button mat-button type="button">Cancel</button>
-            <button mat-raised-button color="primary" type="submit">Save</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="form.pristine">Save</button>
         </div>
     </form>
 </app-edition-layout>

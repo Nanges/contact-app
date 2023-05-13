@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { CategoryService } from '../../core/category.service';
 
 @Component({
@@ -32,7 +33,13 @@ export class CategoryFormComponent {
     }
 
     saveHandler() {
-        this.creationMode ? this.createHandler() : this.updateHandler();
+        if (this.form.valid) {
+            const handler: Observable<any> = this.creationMode
+                ? this.categoryService.create(this.form.value['category'])
+                : this.categoryService.update(this.index, this.form.value['category']);
+
+            handler.subscribe(() => this.router.navigate(['../'], { relativeTo: this.route }));
+        }
     }
 
     removeHandler() {
@@ -40,16 +47,6 @@ export class CategoryFormComponent {
             this.categoryService.remove(this.index);
             this.router.navigate(['categories']);
         }
-    }
-
-    private createHandler() {
-        this.categoryService.create(this.form.value['category']).subscribe(() => this.router.navigate(['../'], { relativeTo: this.route }));
-    }
-
-    private updateHandler() {
-        this.categoryService
-            .update(this.index, this.form.value['category'])
-            .subscribe(() => this.router.navigate(['../'], { relativeTo: this.route }));
     }
 
     private buildForm() {
