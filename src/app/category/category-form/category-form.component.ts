@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, Observable, switchMap } from 'rxjs';
-import { ConfirmModalComponent } from 'src/app/shared/layout/confirm-modal/confirm-modal.component';
+import { Observable, switchMap } from 'rxjs';
+import { ConfirmService } from 'src/app/shared/layout/confirm.service';
 import { CategoryService } from '../../core/category.service';
 
 @Component({
@@ -21,11 +20,11 @@ export class CategoryFormComponent {
         private route: ActivatedRoute,
         private categoryService: CategoryService,
         private router: Router,
-        private dialog: MatDialog
+        private confirmService: ConfirmService
     ) {
         this.form = this.buildForm();
-        this.index = Number(route.snapshot.paramMap.get('id'));
-        this.category = route.snapshot.data['category'];
+        this.index = Number(this.route.snapshot.paramMap.get('id'));
+        this.category = this.route.snapshot.data['category'];
 
         if (this.category === undefined) {
             // creation mode
@@ -45,7 +44,7 @@ export class CategoryFormComponent {
                 ? this.categoryService.create(this.form.value['category'])
                 : this.categoryService.update(this.index, this.form.value['category']);
 
-            handler.subscribe(() => this.router.navigate(['../'], { relativeTo: this.route }));
+            handler.subscribe(() => this.router.navigate(['categories']));
         }
     }
 
@@ -55,33 +54,15 @@ export class CategoryFormComponent {
             return;
         }
 
-        const dialogRef = this.dialog.open(ConfirmModalComponent, {
-            data: {
-                title: `You are leaving`,
-                content: `You are going to leave with unsaved work. Do you wish to continue ?`,
-            },
-        });
-
-        dialogRef
-            .afterClosed()
-            .pipe(filter((confirmation: boolean) => confirmation))
+        this.confirmService
+            .confirm(`You are leaving`, `You are going to leave with unsaved work. Do you wish to continue ?`)
             .subscribe(() => this.router.navigate(['categories']));
     }
 
     removeHandler() {
-        const dialogRef = this.dialog.open(ConfirmModalComponent, {
-            data: {
-                title: `Remove category "${this.category}"`,
-                content: `You are going to remove category "${this.category}". Do you wish to continue ?`,
-            },
-        });
-
-        dialogRef
-            .afterClosed()
-            .pipe(
-                filter((confirmation: boolean) => confirmation),
-                switchMap(() => this.categoryService.remove(this.index))
-            )
+        this.confirmService
+            .confirm(`Remove category "${this.category}"`, `You are going to remove category "${this.category}". Do you wish to continue ?`)
+            .pipe(switchMap(() => this.categoryService.remove(this.index)))
             .subscribe(() => this.router.navigate(['categories']));
     }
 
