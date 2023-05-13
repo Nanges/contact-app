@@ -10,8 +10,8 @@ export class CategoryResolver implements Resolve<string> {
     constructor(private categoryService: CategoryService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<string> {
-        const id = route.paramMap.get('categoryId');
-        if (!id) throw new Error('CategoryId not provided');
+        const id = route.params['categoryId'];
+        if (id === undefined) throw new Error('CategoryId not provided');
 
         return this.categoryService.getCategory(+id);
     }
