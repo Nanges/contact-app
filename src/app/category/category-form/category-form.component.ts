@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { filter, Observable, switchMap } from 'rxjs';
+import { ConfirmModalComponent } from 'src/app/shared/layout/confirm-modal/confirm-modal.component';
 import { CategoryService } from '../../core/category.service';
 
 @Component({
@@ -15,7 +17,12 @@ export class CategoryFormComponent {
     readonly form: FormGroup;
     readonly category!: string;
 
-    constructor(private route: ActivatedRoute, private categoryService: CategoryService, private router: Router) {
+    constructor(
+        private route: ActivatedRoute,
+        private categoryService: CategoryService,
+        private router: Router,
+        private dialog: MatDialog
+    ) {
         this.form = this.buildForm();
         this.index = Number(route.snapshot.paramMap.get('id'));
         this.category = route.snapshot.data['category'];
@@ -42,11 +49,40 @@ export class CategoryFormComponent {
         }
     }
 
-    removeHandler() {
-        if (confirm('Are you sure ?')) {
-            this.categoryService.remove(this.index);
+    cancelHandler() {
+        if (this.form.pristine) {
             this.router.navigate(['categories']);
+            return;
         }
+
+        const dialogRef = this.dialog.open(ConfirmModalComponent, {
+            data: {
+                title: `You are leaving`,
+                content: `You are going to leave with unsaved work. Do you wish to continue ?`,
+            },
+        });
+
+        dialogRef
+            .afterClosed()
+            .pipe(filter((confirmation: boolean) => confirmation))
+            .subscribe(() => this.router.navigate(['categories']));
+    }
+
+    removeHandler() {
+        const dialogRef = this.dialog.open(ConfirmModalComponent, {
+            data: {
+                title: `Remove category "${this.category}"`,
+                content: `You are going to remove category "${this.category}". Do you wish to continue ?`,
+            },
+        });
+
+        dialogRef
+            .afterClosed()
+            .pipe(
+                filter((confirmation: boolean) => confirmation),
+                switchMap(() => this.categoryService.remove(this.index))
+            )
+            .subscribe(() => this.router.navigate(['categories']));
     }
 
     private buildForm() {
