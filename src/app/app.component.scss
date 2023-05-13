@@ -1,0 +1,15 @@
+.app-name{
+    display:flex;
+    align-items: center;
+}
+
+.menu > ul{
+    display:flex;
+    list-style-type: none;
+    margin:0px 0px 0px 2rem;
+    padding:0px;
+}
+
+.menu > ul > li:not(:last-of-type){
+    margin-right:.5rem;
+}
