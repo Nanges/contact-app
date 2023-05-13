@@ -22,7 +22,7 @@ export class CategoryFormComponent {
         private confirmService: ConfirmService
     ) {
         this.form = this.buildForm();
-        this.index = Number(this.route.snapshot.paramMap.get('id'));
+        this.index = Number(this.route.snapshot.paramMap.get('categoryId'));
         this.category = this.route.snapshot.data['category'];
 
         if (this.category === undefined) {
