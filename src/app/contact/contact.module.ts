@@ -7,9 +7,11 @@ import { MaterialModule } from '../shared/material/material.module';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ContactRoutingModule } from './contact-routing.module';
+import { AddContactComponent } from './add-contact/add-contact.component';
+import { ContactFieldsComponent } from './contact-fields/contact-fields.component';
 
 @NgModule({
-    declarations: [ContactListComponent, ContactFormComponent],
+    declarations: [ContactListComponent, ContactFormComponent, AddContactComponent, ContactFieldsComponent],
     imports: [CommonModule, ContactRoutingModule, MaterialModule, ReactiveFormsModule, ListingLayoutModule, EditionLayoutModule],
 })
 export class ContactModule {}
