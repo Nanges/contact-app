@@ -1,1 +1,6 @@
-<app-listing-layout layoutTitle="Categories" addLabel="Add category" routerLink="add"><button>Foo</button></app-listing-layout>
+<app-listing-layout layoutTitle="Categories">
+    <app-add-button routerLink="add" tooltip="Add category"></app-add-button>
+    <mat-action-list>
+        <a mat-list-item [routerLink]="[id]" *ngFor="let category of categories$ | async; let id = index">{{ category }}</a>
+    </mat-action-list>
+</app-listing-layout>

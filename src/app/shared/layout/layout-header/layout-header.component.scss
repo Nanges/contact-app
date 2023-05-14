@@ -1,0 +1,16 @@
+:host{
+    display:block;
+    margin-bottom:2rem;
+}
+
+header{
+    display:flex;
+    align-items: center;
+    padding-bottom: 1rem;
+
+    h1{
+        font-weight: 100;
+        flex-grow: 1;
+        margin: 0px 1rem 0px 0px;
+    }
+}
