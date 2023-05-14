@@ -28,17 +28,18 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content component">
+               <div class="content directive">
                    <div class="content-data">
 
 
 
 
+
+
+
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
-  >
-  AddCategoryComponent</li>
+  <li>Directives</li>
+  <li >RemoveHandlerDirective</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -48,78 +49,62 @@
         <li >
             <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
         </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
-        </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
-    <h3>File</h3>
-</p>
-<p class="comment">
-    <code>src/app/category/add-category/add-category.component.ts</code>
-</p>
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/shared/layout/edition-layout/remove-handler.directive.ts</code>
+        </p>
 
 
 
 
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                            <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+            </p>
 
 
-<section>
-    <h3>Metadata</h3>
-    <table class="table table-sm table-hover metadata">
-        <tbody>
+        <section>
+            <h3>Metadata</h3>
+            <table class="table table-sm table-hover metadata">
+                <tbody>
 
+                    <tr>
+                        <td class="col-md-3">Selector</td>
+                        <td class="col-md-9"><code>app-remove-button[appRemoveHandler]</code></td>
+                    </tr>
 
+                </tbody>
+            </table>
+        </section>
 
-
-
-
-
-
-
-            <tr>
-                <td class="col-md-3">providers</td>
-                <td class="col-md-9">
-                            <code>{
-    provide: APP_FORM, useFactory: categoryFormFactory,
-}</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-add-category</code></td>
-            </tr>
-
-
-
-            <tr>
-                <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;app-edition-layout layoutTitle&#x3D;&quot;Add category&quot; (save)&#x3D;&quot;saveHandler()&quot; (cancel)&#x3D;&quot;cancelHandler()&quot;&gt;
-    &lt;app-category-fields&gt;&lt;/app-category-fields&gt;
-&lt;/app-edition-layout&gt;
-</code></pre></td>
-            </tr>
-
-
-
-
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
-
-    <section>
+            <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#subscription" >subscription</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -130,10 +115,31 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#cancelHandler" >cancelHandler</a>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
                             </li>
                             <li>
-                                <a href="#saveHandler" >saveHandler</a>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#appRemoveHandler" >appRemoveHandler</a>
+                            </li>
+                            <li>
+                                <a href="#confirmContent" >confirmContent</a>
+                            </li>
+                            <li>
+                                <a href="#confirmTitle" >confirmTitle</a>
                             </li>
                         </ul>
                     </td>
@@ -142,23 +148,22 @@
 
 
 
-
         </tbody>
     </table>
 </section>
 
-    <section>
+            <section>
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(form: <a href="https://angular.io/api/forms/FormGroup" target="_blank">FormGroup</a>, categoryService: <a href="../injectables/CategoryService.html" target="_self">CategoryService</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, confirmService: <a href="../injectables/ConfirmService.html" target="_self">ConfirmService</a>)</code>
+<code>constructor(confirmService: <a href="../injectables/ConfirmService.html" target="_self">ConfirmService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, elementRef: ElementRef<HTMLElement>, back: any[])</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/category/add-category/add-category.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/shared/layout/edition-layout/remove-handler.directive.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -176,34 +181,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>form</td>
+                                                        <td>confirmService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>categoryService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/CategoryService.html" target="_self" >CategoryService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>route</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                                        <code><a href="../injectables/ConfirmService.html" target="_self" >ConfirmService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -224,10 +205,34 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>confirmService</td>
+                                                        <td>route</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/ConfirmService.html" target="_self" >ConfirmService</a></code>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>elementRef</td>
+                                                  
+                                                        <td>
+                                                                    <code>ElementRef&lt;HTMLElement&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>back</td>
+                                                  
+                                                        <td>
+                                                                    <code>any[]</code>
                                                         </td>
                                                   
                                                     <td>
@@ -244,11 +249,76 @@
         </table>
 </section>
 
+            <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="appRemoveHandler"></a>
+                        <b>appRemoveHandler</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/shared/layout/edition-layout/remove-handler.directive.ts:14</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="confirmContent"></a>
+                        <b>confirmContent</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/shared/layout/edition-layout/remove-handler.directive.ts:16</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="confirmTitle"></a>
+                        <b>confirmTitle</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/shared/layout/edition-layout/remove-handler.directive.ts:15</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
 
 
 
-
-    <section>
+            <section>
     
     <h3 id="methods">
         Methods
@@ -257,24 +327,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="cancelHandler"></a>
+                    <a name="ngOnDestroy"></a>
                     <span class="name">
-                        <span ><b>cancelHandler</b></span>
-                        <a href="#cancelHandler"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>cancelHandler()</code>
+<code>ngOnDestroy()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/app/category/add-category/add-category.component.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/app/shared/layout/edition-layout/remove-handler.directive.ts:36</a></div>
                 </td>
             </tr>
 
@@ -294,24 +364,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="saveHandler"></a>
+                    <a name="ngOnInit"></a>
                     <span class="name">
-                        <span ><b>saveHandler</b></span>
-                        <a href="#saveHandler"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>saveHandler()</code>
+<code>ngOnInit()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/app/category/add-category/add-category.component.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/app/shared/layout/edition-layout/remove-handler.directive.ts:26</a></div>
                 </td>
             </tr>
 
@@ -328,100 +398,88 @@
         </tbody>
     </table>
 </section>
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subscription"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>subscription</b></span>
+                        <a href="#subscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
 
-</div>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/shared/layout/edition-layout/remove-handler.directive.ts:12</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Inject } from &#x27;@angular/core&#x27;;
-import { FormGroup } from &#x27;@angular/forms&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, ElementRef, Inject, Input, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
 import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
-import { CategoryService } from &#x27;src/app/core/category.service&#x27;;
-import { ConfirmService } from &#x27;src/app/shared/layout/confirm/confirm.service&#x27;;
-import { APP_FORM } from &#x27;src/app/shared/layout/edition-layout/tokens/app-form&#x27;;
-import { categoryFormFactory } from &#x27;../category-form&#x27;;
+import { fromEvent, Observable, Subscription } from &#x27;rxjs&#x27;;
+import { filter, switchMap } from &#x27;rxjs/operators&#x27;;
+import { ConfirmService } from &#x27;../confirm/confirm.service&#x27;;
+import { BACK_COMMANDS } from &#x27;./tokens/back-commands&#x27;;
 
-@Component({
-    selector: &#x27;app-add-category&#x27;,
-    template: &#x60;
-        &lt;app-edition-layout layoutTitle&#x3D;&quot;Add category&quot; (save)&#x3D;&quot;saveHandler()&quot; (cancel)&#x3D;&quot;cancelHandler()&quot;&gt;
-            &lt;app-category-fields&gt;&lt;/app-category-fields&gt;
-        &lt;/app-edition-layout&gt;
-    &#x60;,
-    providers: [
-        {
-            provide: APP_FORM,
-            useFactory: categoryFormFactory,
-        },
-    ],
+@Directive({
+    selector: &#x27;app-remove-button[appRemoveHandler]&#x27;,
 })
-export class AddCategoryComponent {
-    /**
-     *
-     */
+export class RemoveHandlerDirective implements OnInit, OnDestroy {
+    private subscription!: Subscription;
+
+    @Input(&#x27;appRemoveHandler&#x27;) handler$!: Observable&lt;any&gt;;
+    @Input() confirmTitle!: string;
+    @Input() confirmContent!: string;
+
     constructor(
-        @Inject(APP_FORM) private form: FormGroup,
-        private categoryService: CategoryService,
-        private route: ActivatedRoute,
+        private confirmService: ConfirmService,
         private router: Router,
-        private confirmService: ConfirmService
+        private route: ActivatedRoute,
+        private elementRef: ElementRef&lt;HTMLElement&gt;,
+        @Inject(BACK_COMMANDS) private back: any[]
     ) {}
 
-    saveHandler() {
-        if (!this.form.valid) return;
-        this.categoryService.create(this.form.value[&#x27;category&#x27;]).subscribe(() &#x3D;&gt; this.router.navigate([&#x27;..&#x27;], { relativeTo: this.route }));
+    ngOnInit(): void {
+        this.subscription &#x3D; fromEvent(this.elementRef.nativeElement, &#x27;click&#x27;)
+            .pipe(
+                switchMap(() &#x3D;&gt; this.confirmService.confirm(this.confirmTitle, this.confirmContent)),
+                filter((confirmation: boolean) &#x3D;&gt; confirmation),
+                switchMap(() &#x3D;&gt; this.handler$)
+            )
+            .subscribe(() &#x3D;&gt; this.router.navigate(this.back, { relativeTo: this.route }));
     }
 
-    cancelHandler() {
-        if (this.form.pristine) {
-            this.router.navigate([&#x27;..&#x27;], { relativeTo: this.route });
-            return;
-        }
-
-        this.confirmService
-            .confirm(&#x60;You are leaving&#x60;, &#x60;You are going to leave with unsaved work. Do you wish to continue ?&#x60;)
-            .subscribe(() &#x3D;&gt; this.router.navigate([&#x27;..&#x27;], { relativeTo: this.route }));
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
     }
 }
 </code></pre>
     </div>
 
-
-
-    <div class="tab-pane fade " id="c-tree">
-        <div id="tree-container"></div>
-        <div class="tree-legend">
-            <div class="title">
-                <b>Legend</b>
-            </div>
-            <div>
-                <div class="color htmlelement"></div><span>Html element</span>
-            </div>
-            <div>
-                <div class="color component"></div><span>Component</span>
-            </div>
-            <div>
-                <div class="color directive"></div><span>Html element with directive</span>
-            </div>
-        </div>
-    </div>
-
-    
 </div>
-
-<script src="../js/libs/vis.min.js"></script>
-<script src="../js/libs/htmlparser.js"></script>
-<script src="../js/libs/deep-iterator.js"></script>
-<script>
-        var COMPONENT_TEMPLATE = '<div><app-edition-layout layoutTitle="Add category" (save)="saveHandler()" (cancel)="cancelHandler()">    <app-category-fields></app-category-fields></app-edition-layout></div>'
-    var COMPONENTS = [{'name': 'AddButtonComponent', 'selector': 'app-add-button'},{'name': 'AddCategoryComponent', 'selector': 'app-add-category'},{'name': 'AddContactComponent', 'selector': 'app-add-contact'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CategoryFieldsComponent', 'selector': 'app-category-fields'},{'name': 'CategoryListComponent', 'selector': 'app-category-list'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ContactFieldsComponent', 'selector': 'app-contact-fields'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'EditCategoryComponent', 'selector': 'app-edit-category'},{'name': 'EditContactComponent', 'selector': 'app-edit-contact'},{'name': 'EditionLayoutComponent', 'selector': 'app-edition-layout'},{'name': 'LayoutHeaderComponent', 'selector': 'app-layout-header'},{'name': 'ListingLayoutComponent', 'selector': 'app-listing-layout'},{'name': 'RemoveButtonComponent', 'selector': 'app-remove-button'}];
-    var DIRECTIVES = [{'name': 'RemoveHandlerDirective', 'selector': 'app-remove-button[appRemoveHandler]'},{'name': 'SaveHandlerDirective', 'selector': 'app-edition-layout[appSaveHandler]'},{'name': 'UseCancellationDirective', 'selector': 'app-edition-layout[appUseCancellation]'}];
-    var ACTUAL_COMPONENT = {'name': 'AddCategoryComponent'};
-</script>
-<script src="../js/tree.js"></script>
-
-
-
 
 
 
@@ -461,8 +519,8 @@ export class AddCategoryComponent {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'AddCategoryComponent.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'directive';
+            var COMPODOC_CURRENT_PAGE_URL = 'RemoveHandlerDirective.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -177,7 +177,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Inject } from &#x27;@angular/core&#x27;;
 import { FormGroup } from &#x27;@angular/forms&#x27;;
-import { APP_FORM } from &#x27;src/app/shared/layout/tokens/app-form&#x27;;
+import { APP_FORM } from &#x27;src/app/shared/layout/edition-layout/tokens/app-form&#x27;;
 
 @Component({
     selector: &#x27;app-category-fields&#x27;,
@@ -237,8 +237,8 @@ export class CategoryFieldsComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="form-field-wrapper" [formGroup]="form">    <mat-form-field appearance="outline">        <mat-label>Category</mat-label>        <input matInput placeholder="Category" formControlName="category" />        <mat-error *ngIf="form.get(\'category\')?.invalid">This field is required</mat-error>    </mat-form-field></div></div>'
-    var COMPONENTS = [{'name': 'AddButtonComponent', 'selector': 'app-add-button'},{'name': 'AddCategoryComponent', 'selector': 'app-add-category'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CategoryFieldsComponent', 'selector': 'app-category-fields'},{'name': 'CategoryListComponent', 'selector': 'app-category-list'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ContactFormComponent', 'selector': 'app-contact-form'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'EditCategoryComponent', 'selector': 'app-edit-category'},{'name': 'EditionLayoutComponent', 'selector': 'app-edition-layout'},{'name': 'LayoutHeaderComponent', 'selector': 'app-layout-header'},{'name': 'ListingLayoutComponent', 'selector': 'app-listing-layout'},{'name': 'RemoveButtonComponent', 'selector': 'app-remove-button'}];
-    var DIRECTIVES = [];
+    var COMPONENTS = [{'name': 'AddButtonComponent', 'selector': 'app-add-button'},{'name': 'AddCategoryComponent', 'selector': 'app-add-category'},{'name': 'AddContactComponent', 'selector': 'app-add-contact'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CategoryFieldsComponent', 'selector': 'app-category-fields'},{'name': 'CategoryListComponent', 'selector': 'app-category-list'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ContactFieldsComponent', 'selector': 'app-contact-fields'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'EditCategoryComponent', 'selector': 'app-edit-category'},{'name': 'EditContactComponent', 'selector': 'app-edit-contact'},{'name': 'EditionLayoutComponent', 'selector': 'app-edition-layout'},{'name': 'LayoutHeaderComponent', 'selector': 'app-layout-header'},{'name': 'ListingLayoutComponent', 'selector': 'app-listing-layout'},{'name': 'RemoveButtonComponent', 'selector': 'app-remove-button'}];
+    var DIRECTIVES = [{'name': 'RemoveHandlerDirective', 'selector': 'app-remove-button[appRemoveHandler]'},{'name': 'SaveHandlerDirective', 'selector': 'app-edition-layout[appSaveHandler]'},{'name': 'UseCancellationDirective', 'selector': 'app-edition-layout[appUseCancellation]'}];
     var ACTUAL_COMPONENT = {'name': 'CategoryFieldsComponent'};
 </script>
 <script src="../js/tree.js"></script>

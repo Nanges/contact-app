@@ -61,13 +61,19 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#APP_FORM" title="src/app/shared/layout/tokens/app-form.ts" ><b>APP_FORM</b>&nbsp;&nbsp;&nbsp;(src/.../app-form.ts)</a>
+                            <a href="#APP_FORM" title="src/app/shared/layout/edition-layout/tokens/app-form.ts" ><b>APP_FORM</b>&nbsp;&nbsp;&nbsp;(src/.../app-form.ts)</a>
                         </li>
                         <li>
-                            <a href="#appForm" title="src/app/shared/layout/tokens/app-form.ts" ><b>appForm</b>&nbsp;&nbsp;&nbsp;(src/.../app-form.ts)</a>
+                            <a href="#appForm" title="src/app/shared/layout/edition-layout/tokens/app-form.ts" ><b>appForm</b>&nbsp;&nbsp;&nbsp;(src/.../app-form.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#BACK_COMMANDS" title="src/app/shared/layout/edition-layout/tokens/back-commands.ts" ><b>BACK_COMMANDS</b>&nbsp;&nbsp;&nbsp;(src/.../back-commands.ts)</a>
                         </li>
                         <li>
                             <a href="#categoryFormFactory" title="src/app/category/category-form.ts" ><b>categoryFormFactory</b>&nbsp;&nbsp;&nbsp;(src/.../category-form.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#contactFormFactory" title="src/app/contact/contact-form.ts" ><b>contactFormFactory</b>&nbsp;&nbsp;&nbsp;(src/.../contact-form.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -76,7 +82,7 @@
     </table>
 </section>
 
-    <h3>src/app/shared/layout/tokens/app-form.ts</h3>
+    <h3>src/app/shared/layout/edition-layout/tokens/app-form.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -128,6 +134,32 @@
         </tbody>
     </table>
 </section>
+    <h3>src/app/shared/layout/edition-layout/tokens/back-commands.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BACK_COMMANDS"></a>
+                    <span class="name">
+                        <span ><b>BACK_COMMANDS</b></span>
+                        <a href="#BACK_COMMANDS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;any[]&gt;(&#x27;Back commands used by &#x60;router.navigate&#x60; on cancellation, save or remove action&#x27;, {
+    factory: () &#x3D;&gt; [&#x27;..&#x27;],
+    providedIn: forwardRef(() &#x3D;&gt; EditionLayoutModule),
+})</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
     <h3>src/app/category/category-form.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -145,6 +177,36 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>() &#x3D;&gt;
     new FormGroup({
+        category: new FormControl(null, Validators.required),
+    })</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/contact/contact-form.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="contactFormFactory"></a>
+                    <span class="name">
+                        <span ><b>contactFormFactory</b></span>
+                        <a href="#contactFormFactory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt;
+    new FormGroup({
+        firstname: new FormControl(null, Validators.required),
+        lastname: new FormControl(null, Validators.required),
+        email: new FormControl(null, [Validators.required, Validators.email]),
+        phone: new FormControl(null, [Validators.required]),
         category: new FormControl(null, Validators.required),
     })</code>
                     </td>

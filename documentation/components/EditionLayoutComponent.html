@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/shared/layout/edition-layout/edition-layout.component.ts</code>
+    <code>src/app/shared/layout/edition-layout/edition-layout/edition-layout.component.ts</code>
 </p>
 
 
@@ -164,7 +164,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/shared/layout/edition-layout/edition-layout.component.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/shared/layout/edition-layout/edition-layout/edition-layout.component.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -220,7 +220,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/shared/layout/edition-layout/edition-layout.component.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/shared/layout/edition-layout/edition-layout/edition-layout.component.ts:10</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -244,7 +244,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/shared/layout/edition-layout/edition-layout.component.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/shared/layout/edition-layout/edition-layout/edition-layout.component.ts:11</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -265,7 +265,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/shared/layout/edition-layout/edition-layout.component.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/shared/layout/edition-layout/edition-layout/edition-layout.component.ts:12</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -346,8 +346,8 @@ export class EditionLayoutComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><main class="container">    <app-layout-header [headerTitle]="layoutTitle">        <div headerAction>            <ng-content select="app-remove-button"></ng-content>        </div>    </app-layout-header>    <form [formGroup]="form" (ngSubmit)="save.emit()">        <ng-content></ng-content>        <mat-divider></mat-divider>        <div class="action-bar content-end">            <button mat-button type="button" (click)="cancel.emit()">Cancel</button>            <button mat-raised-button color="primary" type="submit" [disabled]="form.pristine">Save</button>        </div>    </form></main></div>'
-    var COMPONENTS = [{'name': 'AddButtonComponent', 'selector': 'app-add-button'},{'name': 'AddCategoryComponent', 'selector': 'app-add-category'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CategoryFieldsComponent', 'selector': 'app-category-fields'},{'name': 'CategoryListComponent', 'selector': 'app-category-list'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ContactFormComponent', 'selector': 'app-contact-form'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'EditCategoryComponent', 'selector': 'app-edit-category'},{'name': 'EditionLayoutComponent', 'selector': 'app-edition-layout'},{'name': 'LayoutHeaderComponent', 'selector': 'app-layout-header'},{'name': 'ListingLayoutComponent', 'selector': 'app-listing-layout'},{'name': 'RemoveButtonComponent', 'selector': 'app-remove-button'}];
-    var DIRECTIVES = [];
+    var COMPONENTS = [{'name': 'AddButtonComponent', 'selector': 'app-add-button'},{'name': 'AddCategoryComponent', 'selector': 'app-add-category'},{'name': 'AddContactComponent', 'selector': 'app-add-contact'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CategoryFieldsComponent', 'selector': 'app-category-fields'},{'name': 'CategoryListComponent', 'selector': 'app-category-list'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ContactFieldsComponent', 'selector': 'app-contact-fields'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'EditCategoryComponent', 'selector': 'app-edit-category'},{'name': 'EditContactComponent', 'selector': 'app-edit-contact'},{'name': 'EditionLayoutComponent', 'selector': 'app-edition-layout'},{'name': 'LayoutHeaderComponent', 'selector': 'app-layout-header'},{'name': 'ListingLayoutComponent', 'selector': 'app-listing-layout'},{'name': 'RemoveButtonComponent', 'selector': 'app-remove-button'}];
+    var DIRECTIVES = [{'name': 'RemoveHandlerDirective', 'selector': 'app-remove-button[appRemoveHandler]'},{'name': 'SaveHandlerDirective', 'selector': 'app-edition-layout[appSaveHandler]'},{'name': 'UseCancellationDirective', 'selector': 'app-edition-layout[appUseCancellation]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionLayoutComponent'};
 </script>
 <script src="../js/tree.js"></script>

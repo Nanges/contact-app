@@ -58,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/shared/layout/confirm.service.ts</code>
+            <code>src/app/shared/layout/confirm/confirm.service.ts</code>
         </p>
 
 
@@ -104,7 +104,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/shared/layout/confirm.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/shared/layout/confirm/confirm.service.ts:7</a></div>
                             </td>
                         </tr>
 
@@ -167,8 +167,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="11"
-                            class="link-to-prism">src/app/shared/layout/confirm.service.ts:11</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="10"
+                            class="link-to-prism">src/app/shared/layout/confirm/confirm.service.ts:10</a></div>
                 </td>
             </tr>
 
@@ -236,8 +236,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
-import { Observable } from &#x27;rxjs&#x27;;
-import { filter } from &#x27;rxjs/operators&#x27;;
+import { defer, Observable } from &#x27;rxjs&#x27;;
 import { ConfirmModalComponent } from &#x27;./confirm-modal/confirm-modal.component&#x27;;
 
 @Injectable()
@@ -245,15 +244,16 @@ export class ConfirmService {
     constructor(private dialog: MatDialog) {}
 
     confirm(title: string, content: string): Observable&lt;boolean&gt; {
-        return this.dialog
-            .open(ConfirmModalComponent, {
-                data: {
-                    title,
-                    content,
-                },
-            })
-            .afterClosed()
-            .pipe(filter((confirmation: boolean) &#x3D;&gt; confirmation));
+        return defer(() &#x3D;&gt;
+            this.dialog
+                .open(ConfirmModalComponent, {
+                    data: {
+                        title,
+                        content,
+                    },
+                })
+                .afterClosed()
+        );
     }
 }
 </code></pre>

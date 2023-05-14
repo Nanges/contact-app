@@ -75,8 +75,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 import { ContactResolver } from &#x27;../core/resolvers/contact.resolver&#x27;;
-import { ContactFormComponent } from &#x27;./contact-form/contact-form.component&#x27;;
+import { AddContactComponent } from &#x27;./add-contact/add-contact.component&#x27;;
 import { ContactListComponent } from &#x27;./contact-list/contact-list.component&#x27;;
+import { EditContactComponent } from &#x27;./edit-contact/edit-contact.component&#x27;;
 
 const routes: Routes &#x3D; [
     {
@@ -85,14 +86,14 @@ const routes: Routes &#x3D; [
     },
     {
         path: &#x27;add&#x27;,
-        component: ContactFormComponent,
+        component: AddContactComponent,
     },
     {
         path: &#x27;:contactId&#x27;,
         resolve: {
             contact: ContactResolver,
         },
-        component: ContactFormComponent,
+        component: EditContactComponent,
     },
 ];
 
