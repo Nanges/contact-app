@@ -9,6 +9,8 @@ import { EditionLayoutComponent } from './edition-layout/edition-layout.componen
 import { LayoutHeaderComponent } from './layout-header/layout-header.component';
 import { ListingLayoutComponent } from './listing-layout/listing-layout.component';
 import { RemoveButtonComponent } from './remove-button/remove-button.component';
+import { RemoveHandlerDirective } from './remove-handler.directive';
+import { SaveHandlerDirective } from './save-handler.directive';
 import { UseCancellationDirective } from './use-cancellation.directive';
 
 @NgModule({
@@ -20,6 +22,8 @@ import { UseCancellationDirective } from './use-cancellation.directive';
         ConfirmModalComponent,
         LayoutHeaderComponent,
         UseCancellationDirective,
+        SaveHandlerDirective,
+        RemoveHandlerDirective,
     ],
     imports: [CommonModule, ReactiveFormsModule, MaterialModule],
     exports: [
@@ -30,6 +34,8 @@ import { UseCancellationDirective } from './use-cancellation.directive';
         ConfirmModalComponent,
         LayoutHeaderComponent,
         UseCancellationDirective,
+        SaveHandlerDirective,
+        RemoveHandlerDirective,
     ],
     providers: [ConfirmService],
 })

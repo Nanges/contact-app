@@ -1,17 +1,21 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { defer, Observable } from 'rxjs';
 import { CategoryService } from 'src/app/core/category.service';
-import { ConfirmService } from 'src/app/shared/layout/confirm.service';
 import { appForm, APP_FORM } from 'src/app/shared/layout/tokens/app-form';
 import { categoryFormFactory } from '../category-form';
 
 @Component({
     selector: 'app-edit-category',
     template: `
-        <app-edition-layout layoutTitle="Edit category" appUseCancellation (save)="saveHandler()">
-            <app-remove-button tooltip="Remove this category" (click)="removeHandler()"></app-remove-button>
+        <app-edition-layout layoutTitle="Edit category" appUseCancellation [appSaveHandler]="saveHandler$">
+            <app-remove-button
+                tooltip="Remove this category"
+                [appRemoveHandler]="removeHandler$"
+                [confirmTitle]="confirmTitle"
+                [confirmContent]="confirmContent"
+            ></app-remove-button>
             <app-category-fields></app-category-fields>
         </app-edition-layout>
     `,
@@ -19,35 +23,28 @@ import { categoryFormFactory } from '../category-form';
 })
 export class EditCategoryComponent {
     readonly index: number;
-    readonly category!: string;
+    readonly category: string;
+    readonly saveHandler$: Observable<any>;
+    readonly removeHandler$: Observable<any>;
+
+    get confirmTitle() {
+        return `Remove category "${this.category}"`;
+    }
+
+    get confirmContent() {
+        return `You are going to remove category "${this.category}". Do you wish to continue ?`;
+    }
     /**
      *
      */
-    constructor(
-        @Inject(APP_FORM) private form: FormGroup,
-        private categoryService: CategoryService,
-        private route: ActivatedRoute,
-        private router: Router,
-        private confirmService: ConfirmService
-    ) {
+    constructor(@Inject(APP_FORM) private form: FormGroup, private categoryService: CategoryService, private route: ActivatedRoute) {
         this.index = Number(this.route.snapshot.paramMap.get('categoryId'));
         this.category = this.route.snapshot.data['category'];
         this.form.setValue({
             category: this.category,
         });
-    }
 
-    saveHandler() {
-        if (!this.form.valid) return;
-        this.categoryService
-            .update(this.index, this.form.value['category'])
-            .subscribe(() => this.router.navigate(['..'], { relativeTo: this.route }));
-    }
-
-    removeHandler() {
-        this.confirmService
-            .confirm(`Remove category "${this.category}"`, `You are going to remove category "${this.category}". Do you wish to continue ?`)
-            .pipe(switchMap(() => this.categoryService.remove(this.index)))
-            .subscribe(() => this.router.navigate(['..'], { relativeTo: this.route }));
+        this.saveHandler$ = defer(() => this.categoryService.update(this.index, this.form.value['category']));
+        this.removeHandler$ = defer(() => this.categoryService.remove(this.index));
     }
 }
