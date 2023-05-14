@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContactResolver } from '../core/resolvers/contact.resolver';
 import { AddContactComponent } from './add-contact/add-contact.component';
-import { ContactFormComponent } from './contact-form/contact-form.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
+import { EditContactComponent } from './edit-contact/edit-contact.component';
 
 const routes: Routes = [
     {
@@ -19,7 +19,7 @@ const routes: Routes = [
         resolve: {
             contact: ContactResolver,
         },
-        component: ContactFormComponent,
+        component: EditContactComponent,
     },
 ];
 
