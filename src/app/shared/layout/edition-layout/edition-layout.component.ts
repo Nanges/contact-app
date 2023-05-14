@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormGroupDirective } from '@angular/forms';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { APP_FORM } from '../tokens/app-form';
 
 @Component({
     selector: 'app-edition-layout',
@@ -10,12 +11,8 @@ export class EditionLayoutComponent {
     @Output() cancel = new EventEmitter();
     @Output() save = new EventEmitter();
 
-    get form() {
-        return this.fg.form;
-    }
-
     /**
      *
      */
-    constructor(private fg: FormGroupDirective) {}
+    constructor(@Inject(APP_FORM) readonly form: FormGroup) {}
 }

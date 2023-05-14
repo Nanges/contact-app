@@ -1,29 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/core/category.service';
 import { ConfirmService } from 'src/app/shared/layout/confirm.service';
-import { CategoryForm } from '../category-form';
+import { APP_FORM } from 'src/app/shared/layout/tokens/app-form';
+import { categoryFormFactory } from '../category-form';
 
 @Component({
     selector: 'app-add-category',
     template: `
-        <app-edition-layout layoutTitle="Add category" [formGroup]="form" (save)="saveHandler()" (cancel)="cancelHandler()">
+        <app-edition-layout layoutTitle="Add category" (save)="saveHandler()" (cancel)="cancelHandler()">
             <app-category-fields></app-category-fields>
         </app-edition-layout>
     `,
+    providers: [
+        {
+            provide: APP_FORM,
+            useFactory: categoryFormFactory,
+        },
+    ],
 })
-export class AddCategoryComponent extends CategoryForm {
+export class AddCategoryComponent {
     /**
      *
      */
     constructor(
+        @Inject(APP_FORM) private form: FormGroup,
         private categoryService: CategoryService,
         private route: ActivatedRoute,
         private router: Router,
         private confirmService: ConfirmService
-    ) {
-        super();
-    }
+    ) {}
 
     saveHandler() {
         if (!this.form.valid) return;
