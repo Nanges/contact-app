@@ -5,7 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { filter, switchMap } from 'rxjs/operators';
 import { EditionLayoutComponent } from './edition-layout/edition-layout.component';
 import { APP_FORM } from './tokens/app-form';
-import { BACK_COMMAND } from './tokens/back-commands';
+import { BACK_COMMANDS } from './tokens/back-commands';
 
 @Directive({
     selector: 'app-edition-layout[appSaveHandler]',
@@ -20,7 +20,7 @@ export class SaveHandlerDirective implements OnInit, OnDestroy {
         private editionLayout: EditionLayoutComponent,
         private router: Router,
         private route: ActivatedRoute,
-        @Inject(BACK_COMMAND) private back: any[]
+        @Inject(BACK_COMMANDS) private back: any[]
     ) {}
 
     ngOnInit(): void {

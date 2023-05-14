@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { filter, switchMap } from 'rxjs/operators';
 import { ConfirmService } from '../confirm/confirm.service';
-import { BACK_COMMAND } from './tokens/back-commands';
+import { BACK_COMMANDS } from './tokens/back-commands';
 
 @Directive({
     selector: 'app-remove-button[appRemoveHandler]',
@@ -20,7 +20,7 @@ export class RemoveHandlerDirective implements OnInit, OnDestroy {
         private router: Router,
         private route: ActivatedRoute,
         private elementRef: ElementRef<HTMLElement>,
-        @Inject(BACK_COMMAND) private back: any[]
+        @Inject(BACK_COMMANDS) private back: any[]
     ) {}
 
     ngOnInit(): void {
