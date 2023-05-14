@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LayoutModule } from '../shared/layout/layout.module';
+import { EditionLayoutModule } from '../shared/layout/edition-layout/edition-layout.module';
+import { ListingLayoutModule } from '../shared/layout/listing-layout/listing-layout.module';
 import { MaterialModule } from '../shared/material/material.module';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ContactRoutingModule } from './contact-routing.module';
-import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @NgModule({
     declarations: [ContactListComponent, ContactFormComponent],
-    imports: [CommonModule, ContactRoutingModule, LayoutModule, MaterialModule, ReactiveFormsModule],
+    imports: [CommonModule, ContactRoutingModule, MaterialModule, ReactiveFormsModule, ListingLayoutModule, EditionLayoutModule],
 })
 export class ContactModule {}

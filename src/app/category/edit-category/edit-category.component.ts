@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { defer, Observable } from 'rxjs';
 import { CategoryService } from 'src/app/core/category.service';
-import { appForm, APP_FORM } from 'src/app/shared/layout/tokens/app-form';
+import { appForm, APP_FORM } from 'src/app/shared/layout/edition-layout/tokens/app-form';
 import { categoryFormFactory } from '../category-form';
 
 @Component({

@@ -5,7 +5,7 @@ import { Observable, switchMap } from 'rxjs';
 import { CategoryService } from 'src/app/core/category.service';
 import { ContactService } from 'src/app/core/contact.service';
 import { Contact } from 'src/app/core/models/contact';
-import { ConfirmService } from 'src/app/shared/layout/confirm.service';
+import { ConfirmService } from 'src/app/shared/layout/confirm/confirm.service';
 
 @Component({
     selector: 'app-contact-form',

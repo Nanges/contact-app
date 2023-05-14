@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { iif, of, Subscription } from 'rxjs';
 import { filter, switchMap } from 'rxjs/operators';
-import { ConfirmService } from './confirm.service';
+import { ConfirmService } from '../confirm/confirm.service';
 import { EditionLayoutComponent } from './edition-layout/edition-layout.component';
 import { APP_FORM } from './tokens/app-form';
 

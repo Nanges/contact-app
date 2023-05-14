@@ -2,8 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/core/category.service';
-import { ConfirmService } from 'src/app/shared/layout/confirm.service';
-import { APP_FORM } from 'src/app/shared/layout/tokens/app-form';
+import { ConfirmService } from 'src/app/shared/layout/confirm/confirm.service';
+import { APP_FORM } from 'src/app/shared/layout/edition-layout/tokens/app-form';
 import { categoryFormFactory } from '../category-form';
 
 @Component({
