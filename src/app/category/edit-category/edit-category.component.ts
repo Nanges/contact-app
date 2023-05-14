@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { defer, Observable } from 'rxjs';
+import { defer } from 'rxjs';
 import { CategoryService } from 'src/app/core/category.service';
 import { appForm, APP_FORM } from 'src/app/shared/layout/edition-layout/tokens/app-form';
 import { categoryFormFactory } from '../category-form';
@@ -24,8 +24,8 @@ import { categoryFormFactory } from '../category-form';
 export class EditCategoryComponent {
     readonly index: number;
     readonly category: string;
-    readonly saveHandler$: Observable<any>;
-    readonly removeHandler$: Observable<any>;
+    readonly saveHandler$ = defer(() => this.categoryService.update(this.index, this.form.value['category']));
+    readonly removeHandler$ = defer(() => this.categoryService.remove(this.index));
 
     get confirmTitle() {
         return `Remove category "${this.category}"`;
@@ -43,8 +43,5 @@ export class EditCategoryComponent {
         this.form.setValue({
             category: this.category,
         });
-
-        this.saveHandler$ = defer(() => this.categoryService.update(this.index, this.form.value['category']));
-        this.removeHandler$ = defer(() => this.categoryService.remove(this.index));
     }
 }
