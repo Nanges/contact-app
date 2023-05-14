@@ -6,6 +6,7 @@ import { filter, switchMap } from 'rxjs/operators';
 import { ConfirmService } from '../confirm/confirm.service';
 import { EditionLayoutComponent } from './edition-layout/edition-layout.component';
 import { APP_FORM } from './tokens/app-form';
+import { BACK_COMMAND } from './tokens/back-commands';
 
 @Directive({
     selector: 'app-edition-layout[appUseCancellation]',
@@ -15,6 +16,7 @@ export class UseCancellationDirective implements OnInit, OnDestroy {
 
     constructor(
         @Inject(APP_FORM) private form: FormGroup,
+        @Inject(BACK_COMMAND) private back: any[],
         private confirmService: ConfirmService,
         private editionLayout: EditionLayoutComponent,
         private router: Router,
@@ -40,6 +42,6 @@ export class UseCancellationDirective implements OnInit, OnDestroy {
                     ).pipe(filter((confirmation: boolean) => confirmation))
                 )
             )
-            .subscribe(() => this.router.navigate(['..'], { relativeTo: this.route }));
+            .subscribe(() => this.router.navigate(this.back, { relativeTo: this.route }));
     }
 }

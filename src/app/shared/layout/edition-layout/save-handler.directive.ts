@@ -5,6 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { filter, switchMap } from 'rxjs/operators';
 import { EditionLayoutComponent } from './edition-layout/edition-layout.component';
 import { APP_FORM } from './tokens/app-form';
+import { BACK_COMMAND } from './tokens/back-commands';
 
 @Directive({
     selector: 'app-edition-layout[appSaveHandler]',
@@ -18,7 +19,8 @@ export class SaveHandlerDirective implements OnInit, OnDestroy {
         @Inject(APP_FORM) private form: FormGroup,
         private editionLayout: EditionLayoutComponent,
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        @Inject(BACK_COMMAND) private back: any[]
     ) {}
 
     ngOnInit(): void {
@@ -28,7 +30,7 @@ export class SaveHandlerDirective implements OnInit, OnDestroy {
                 filter(() => this.form.valid),
                 switchMap(() => this.handler$)
             )
-            .subscribe(() => this.router.navigate(['..'], { relativeTo: this.route }));
+            .subscribe(() => this.router.navigate(this.back, { relativeTo: this.route }));
     }
 
     ngOnDestroy(): void {

@@ -1,8 +1,9 @@
-import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { Directive, ElementRef, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { filter, switchMap } from 'rxjs/operators';
 import { ConfirmService } from '../confirm/confirm.service';
+import { BACK_COMMAND } from './tokens/back-commands';
 
 @Directive({
     selector: 'app-remove-button[appRemoveHandler]',
@@ -18,7 +19,8 @@ export class RemoveHandlerDirective implements OnInit, OnDestroy {
         private confirmService: ConfirmService,
         private router: Router,
         private route: ActivatedRoute,
-        private elementRef: ElementRef<HTMLElement>
+        private elementRef: ElementRef<HTMLElement>,
+        @Inject(BACK_COMMAND) private back: any[]
     ) {}
 
     ngOnInit(): void {
@@ -28,7 +30,7 @@ export class RemoveHandlerDirective implements OnInit, OnDestroy {
                 filter((confirmation: boolean) => confirmation),
                 switchMap(() => this.handler$)
             )
-            .subscribe(() => this.router.navigate(['..'], { relativeTo: this.route }));
+            .subscribe(() => this.router.navigate(this.back, { relativeTo: this.route }));
     }
 
     ngOnDestroy(): void {
