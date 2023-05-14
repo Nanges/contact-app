@@ -75,8 +75,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 import { CategoryResolver } from &#x27;../core/resolvers/category.resolver&#x27;;
-import { CategoryFormComponent } from &#x27;./category-form/category-form.component&#x27;;
+import { AddCategoryComponent } from &#x27;./add-category/add-category.component&#x27;;
 import { CategoryListComponent } from &#x27;./category-list/category-list.component&#x27;;
+import { EditCategoryComponent } from &#x27;./edit-category/edit-category.component&#x27;;
 
 const routes: Routes &#x3D; [
     {
@@ -85,14 +86,14 @@ const routes: Routes &#x3D; [
     },
     {
         path: &#x27;add&#x27;,
-        component: CategoryFormComponent,
+        component: AddCategoryComponent,
     },
     {
         path: &#x27;:categoryId&#x27;,
         resolve: {
             category: CategoryResolver,
         },
-        component: CategoryFormComponent,
+        component: EditCategoryComponent,
     },
 ];
 

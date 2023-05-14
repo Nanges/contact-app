@@ -129,6 +129,23 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cancel" >cancel</a>
+                            </li>
+                            <li>
+                                <a href="#save" >save</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
@@ -136,6 +153,54 @@
     </table>
 </section>
 
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(form: <a href="https://angular.io/api/forms/FormGroup" target="_blank">FormGroup</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/shared/layout/edition-layout/edition-layout.component.ts:12</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>form</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
     <section>
     <h3 id="inputs">Inputs</h3>
@@ -155,7 +220,52 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/shared/layout/edition-layout/edition-layout.component.ts:8</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/shared/layout/edition-layout/edition-layout.component.ts:10</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cancel"></a>
+                        <b>cancel</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/shared/layout/edition-layout/edition-layout.component.ts:11</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="save"></a>
+                        <b>save</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/shared/layout/edition-layout/edition-layout.component.ts:12</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -165,12 +275,13 @@
 
 
 
-
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Inject, Input, Output } from &#x27;@angular/core&#x27;;
+import { FormGroup } from &#x27;@angular/forms&#x27;;
+import { APP_FORM } from &#x27;../tokens/app-form&#x27;;
 
 @Component({
     selector: &#x27;app-edition-layout&#x27;,
@@ -178,6 +289,13 @@
 })
 export class EditionLayoutComponent {
     @Input() layoutTitle!: string;
+    @Output() cancel &#x3D; new EventEmitter();
+    @Output() save &#x3D; new EventEmitter();
+
+    /**
+     *
+     */
+    constructor(@Inject(APP_FORM) readonly form: FormGroup) {}
 }
 </code></pre>
     </div>
@@ -189,7 +307,14 @@ export class EditionLayoutComponent {
             &lt;ng-content select&#x3D;&quot;app-remove-button&quot;&gt;&lt;/ng-content&gt;
         &lt;/div&gt;
     &lt;/app-layout-header&gt;
-    &lt;ng-content&gt;&lt;/ng-content&gt;
+    &lt;form [formGroup]&#x3D;&quot;form&quot; (ngSubmit)&#x3D;&quot;save.emit()&quot;&gt;
+        &lt;ng-content&gt;&lt;/ng-content&gt;
+        &lt;mat-divider&gt;&lt;/mat-divider&gt;
+        &lt;div class&#x3D;&quot;action-bar content-end&quot;&gt;
+            &lt;button mat-button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;cancel.emit()&quot;&gt;Cancel&lt;/button&gt;
+            &lt;button mat-raised-button color&#x3D;&quot;primary&quot; type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;form.pristine&quot;&gt;Save&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
 &lt;/main&gt;
 </code></pre>
     </div>
@@ -220,8 +345,8 @@ export class EditionLayoutComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><main class="container">    <app-layout-header [headerTitle]="layoutTitle">        <div headerAction>            <ng-content select="app-remove-button"></ng-content>        </div>    </app-layout-header>    <ng-content></ng-content></main></div>'
-    var COMPONENTS = [{'name': 'AddButtonComponent', 'selector': 'app-add-button'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CategoryFormComponent', 'selector': 'app-category-form'},{'name': 'CategoryListComponent', 'selector': 'app-category-list'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ContactFormComponent', 'selector': 'app-contact-form'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'EditionLayoutComponent', 'selector': 'app-edition-layout'},{'name': 'LayoutHeaderComponent', 'selector': 'app-layout-header'},{'name': 'ListingLayoutComponent', 'selector': 'app-listing-layout'},{'name': 'RemoveButtonComponent', 'selector': 'app-remove-button'}];
+        var COMPONENT_TEMPLATE = '<div><main class="container">    <app-layout-header [headerTitle]="layoutTitle">        <div headerAction>            <ng-content select="app-remove-button"></ng-content>        </div>    </app-layout-header>    <form [formGroup]="form" (ngSubmit)="save.emit()">        <ng-content></ng-content>        <mat-divider></mat-divider>        <div class="action-bar content-end">            <button mat-button type="button" (click)="cancel.emit()">Cancel</button>            <button mat-raised-button color="primary" type="submit" [disabled]="form.pristine">Save</button>        </div>    </form></main></div>'
+    var COMPONENTS = [{'name': 'AddButtonComponent', 'selector': 'app-add-button'},{'name': 'AddCategoryComponent', 'selector': 'app-add-category'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CategoryFieldsComponent', 'selector': 'app-category-fields'},{'name': 'CategoryListComponent', 'selector': 'app-category-list'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ContactFormComponent', 'selector': 'app-contact-form'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'EditCategoryComponent', 'selector': 'app-edit-category'},{'name': 'EditionLayoutComponent', 'selector': 'app-edition-layout'},{'name': 'LayoutHeaderComponent', 'selector': 'app-layout-header'},{'name': 'ListingLayoutComponent', 'selector': 'app-listing-layout'},{'name': 'RemoveButtonComponent', 'selector': 'app-remove-button'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'EditionLayoutComponent'};
 </script>
