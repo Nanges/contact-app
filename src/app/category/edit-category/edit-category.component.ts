@@ -10,7 +10,7 @@ import { categoryFormFactory } from '../category-form';
 @Component({
     selector: 'app-edit-category',
     template: `
-        <app-edition-layout layoutTitle="Edit category" (save)="saveHandler()" (cancel)="cancelHandler()">
+        <app-edition-layout layoutTitle="Edit category" appUseCancellation (save)="saveHandler()">
             <app-remove-button tooltip="Remove this category" (click)="removeHandler()"></app-remove-button>
             <app-category-fields></app-category-fields>
         </app-edition-layout>
@@ -48,17 +48,6 @@ export class EditCategoryComponent {
         this.confirmService
             .confirm(`Remove category "${this.category}"`, `You are going to remove category "${this.category}". Do you wish to continue ?`)
             .pipe(switchMap(() => this.categoryService.remove(this.index)))
-            .subscribe(() => this.router.navigate(['..'], { relativeTo: this.route }));
-    }
-
-    cancelHandler() {
-        if (this.form.pristine) {
-            this.router.navigate(['..'], { relativeTo: this.route });
-            return;
-        }
-
-        this.confirmService
-            .confirm(`You are leaving`, `You are going to leave with unsaved work. Do you wish to continue ?`)
             .subscribe(() => this.router.navigate(['..'], { relativeTo: this.route }));
     }
 }
