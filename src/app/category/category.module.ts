@@ -6,9 +6,11 @@ import { MaterialModule } from '../shared/material/material.module';
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryRoutingModule } from './category-routing.module';
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 @NgModule({
-    declarations: [CategoryListComponent, CategoryFormComponent],
+    declarations: [CategoryListComponent, CategoryFormComponent, AddCategoryComponent, EditCategoryComponent],
     imports: [CommonModule, CategoryRoutingModule, LayoutModule, MaterialModule, ReactiveFormsModule],
 })
 export class CategoryModule {}
