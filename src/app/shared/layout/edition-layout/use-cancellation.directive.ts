@@ -35,11 +35,10 @@ export class UseCancellationDirective implements OnInit, OnDestroy {
                     iif(
                         () => this.form.pristine,
                         of(true),
-                        this.confirmService.confirm(
-                            `You are leaving`,
-                            `You are going to leave with unsaved work. Do you wish to continue ?`
-                        )
-                    ).pipe(filter((confirmation: boolean) => confirmation))
+                        this.confirmService
+                            .confirm(`You are leaving`, `You are going to leave with unsaved work. Do you wish to continue ?`)
+                            .pipe(filter((confirmation: boolean) => confirmation))
+                    )
                 )
             )
             .subscribe(() => this.router.navigate(this.back, { relativeTo: this.route }));

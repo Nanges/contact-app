@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { CategoryService } from 'src/app/core/category.service';
 import { ConfirmService } from 'src/app/shared/layout/confirm/confirm.service';
 import { APP_FORM } from 'src/app/shared/layout/edition-layout/tokens/app-form';
@@ -45,6 +46,7 @@ export class AddCategoryComponent {
 
         this.confirmService
             .confirm(`You are leaving`, `You are going to leave with unsaved work. Do you wish to continue ?`)
+            .pipe(filter((confirmation) => !!confirmation))
             .subscribe(() => this.router.navigate(['..'], { relativeTo: this.route }));
     }
 }
