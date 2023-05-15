@@ -6,7 +6,7 @@ import { ConfirmService } from '../confirm/confirm.service';
 import { BACK_COMMANDS } from './tokens/back-commands';
 
 @Directive({
-    selector: 'app-remove-button[appRemoveHandler]',
+    selector: '[appRemoveHandler]',
 })
 export class RemoveHandlerDirective implements OnInit, OnDestroy {
     private subscription!: Subscription;
