@@ -1,0 +1,53 @@
+<app-edition-layout [layoutTitle]="layoutTitle" appUseCancellation [appSaveHandler]="saveHandler$">
+    <app-remove-button
+        *ngIf="removeHandler$"
+        tooltip="Remove this contact"
+        [appRemoveHandler]="removeHandler$"
+        [confirmTitle]="confirmTitle"
+        [confirmContent]="confirmContent"
+    ></app-remove-button>
+    <ng-container [formGroup]="form">
+        <div class="form-field-wrapper">
+            <mat-form-field appearance="outline">
+                <mat-label>First name</mat-label>
+                <input matInput placeholder="First name" formControlName="firstname" />
+                <mat-error *ngIf="form.get('firstname')?.invalid">This field is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-field-wrapper">
+            <mat-form-field appearance="outline">
+                <mat-label>Last name</mat-label>
+                <input matInput placeholder="Last name" formControlName="lastname" />
+                <mat-error *ngIf="form.get('lastname')?.invalid">This field is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-field-wrapper">
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" formControlName="email" />
+                <mat-error *ngIf="form.get('email')?.invalid">
+                    <ng-container *ngIf="form.get('email')?.hasError('email')">Invalid email format</ng-container>
+                    <ng-container *ngIf="form.get('email')?.hasError('required')">This field is required</ng-container>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-field-wrapper">
+            <mat-form-field appearance="outline">
+                <mat-label>Phone</mat-label>
+                <input matInput placeholder="Phone number" formControlName="phone" />
+                <mat-error *ngIf="form.get('phone')?.invalid">This field is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-field-wrapper">
+            <mat-form-field appearance="outline">
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category" placeholder="Category">
+                    <mat-option *ngFor="let category of categories$ | async" [value]="category">
+                        {{ category }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.get('category')?.invalid">This field is required</mat-error>
+            </mat-form-field>
+        </div>
+    </ng-container>
+</app-edition-layout>
