@@ -70,11 +70,12 @@ export class ContactFormComponent implements FormBehaviorVisitor {
     updateBehavior(): void {
         const index = Number(this.route.snapshot.paramMap.get('contactId'));
         const contact: Contact = this.route.snapshot.data['contact'];
+
+        this.form.setValue(contact);
         this._saveHandler$ = defer(() => this.contactService.update(index, this.form.value));
         this._removeHandler$ = defer(() => this.contactService.remove(index));
         this._layoutTitle = 'Edit contact';
         this._confirmTitle = `Remove contact "${contact.lastname} ${contact.firstname}"`;
         this._confirmContent = `You are going to remove contact "${contact.lastname} ${contact.firstname}". Do you wish to continue ?`;
-        this.form.setValue(contact);
     }
 }
