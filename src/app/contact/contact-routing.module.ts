@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContactResolver } from '../core/resolvers/contact.resolver';
-import { ADD_BEHAVIOR } from '../shared/crud/add-behavior.service';
-import { UPDATE_BEHAVIOR } from '../shared/crud/update-behavior.service';
+import { CREATE_MODE } from '../shared/form-mode/create-mode.service';
+import { UPDATE_MODE } from '../shared/form-mode/update-mode.service';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 
@@ -13,7 +13,7 @@ const routes: Routes = [
     },
     {
         path: 'add',
-        providers: [ADD_BEHAVIOR],
+        providers: [CREATE_MODE],
         component: ContactFormComponent,
     },
     {
@@ -21,7 +21,7 @@ const routes: Routes = [
         resolve: {
             contact: ContactResolver,
         },
-        providers: [UPDATE_BEHAVIOR],
+        providers: [UPDATE_MODE],
         component: ContactFormComponent,
     },
 ];

@@ -5,8 +5,8 @@ import { defer, Observable } from 'rxjs';
 import { CategoryService } from 'src/app/core/category.service';
 import { ContactService } from 'src/app/core/contact.service';
 import { Contact } from 'src/app/core/models/contact';
-import { FormBehavior } from 'src/app/shared/crud/form-behavior';
-import { FormBehaviorVisitor } from 'src/app/shared/crud/form-behavior-visitor';
+import { FormMode } from 'src/app/shared/form-mode/form-mode';
+import { FormModeVisitor } from 'src/app/shared/form-mode/from-mode-visitor';
 import { appForm, APP_FORM } from 'src/app/shared/layout/edition-layout/tokens/app-form';
 import { contactFormFactory } from '../contact-form';
 
@@ -15,7 +15,7 @@ import { contactFormFactory } from '../contact-form';
     templateUrl: './contact-form.component.html',
     providers: [appForm(contactFormFactory)],
 })
-export class ContactFormComponent implements FormBehaviorVisitor {
+export class ContactFormComponent implements FormModeVisitor {
     readonly categories$: Observable<string[]> = this.categoryService.getCategories();
 
     private _layoutTitle!: string;
@@ -48,7 +48,7 @@ export class ContactFormComponent implements FormBehaviorVisitor {
      */
     constructor(
         @Inject(APP_FORM) readonly form: FormGroup,
-        behavior: FormBehavior,
+        behavior: FormMode,
         private contactService: ContactService,
         private route: ActivatedRoute,
         private categoryService: CategoryService
@@ -59,7 +59,7 @@ export class ContactFormComponent implements FormBehaviorVisitor {
     /**
      *
      */
-    addBehavior(): void {
+    createMode(): void {
         this._saveHandler$ = defer(() => this.contactService.create(this.form.value));
         this._layoutTitle = 'Add contact';
     }
@@ -67,7 +67,7 @@ export class ContactFormComponent implements FormBehaviorVisitor {
     /**
      *
      */
-    updateBehavior(): void {
+    updateMode(): void {
         const index = Number(this.route.snapshot.paramMap.get('contactId'));
         const contact: Contact = this.route.snapshot.data['contact'];
 
