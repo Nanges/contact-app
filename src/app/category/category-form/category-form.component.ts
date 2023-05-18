@@ -5,12 +5,13 @@ import { defer } from 'rxjs';
 import { CategoryService } from 'src/app/core/category.service';
 import { FormMode } from 'src/app/shared/form-mode/form-mode';
 import { FormModeDirective } from 'src/app/shared/form-mode/form-mode.directive';
-import { APP_FORM } from 'src/app/shared/layout/edition-layout/tokens/app-form';
+import { appForm, APP_FORM } from 'src/app/shared/layout/edition-layout/tokens/app-form';
+import { categoryFormFactory } from '../category-form';
 
 @Component({
     selector: 'app-category-form',
     templateUrl: './category-form.component.html',
-    styleUrls: ['./category-form.component.scss'],
+    providers: [appForm(categoryFormFactory)],
 })
 export class CategoryFormComponent extends FormModeDirective {
     /**
@@ -22,14 +23,15 @@ export class CategoryFormComponent extends FormModeDirective {
         private route: ActivatedRoute,
         private categoryService: CategoryService
     ) {
-        super(mode);
+        super();
+        mode.accept(this);
     }
 
     /**
      *
      */
     createMode(): void {
-        this._saveHandler$ = defer(() => this.categoryService.create(this.form.value));
+        this._saveHandler$ = defer(() => this.categoryService.create(this.form.value['category']));
         this._layoutTitle = 'Add category';
     }
 

@@ -28,7 +28,8 @@ export class ContactFormComponent extends FormModeDirective {
         private route: ActivatedRoute,
         private categoryService: CategoryService
     ) {
-        super(mode);
+        super();
+        mode.accept(this);
     }
 
     /**

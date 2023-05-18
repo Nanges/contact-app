@@ -1,6 +1,5 @@
 import { Directive } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FormMode } from './form-mode';
 import { FormModeVisitor } from './from-mode-visitor';
 
 @Directive()
@@ -28,13 +27,6 @@ export abstract class FormModeDirective implements FormModeVisitor {
     protected _confirmContent: string = '';
     get confirmContent() {
         return this._confirmContent;
-    }
-
-    /**
-     *
-     */
-    constructor(mode: FormMode) {
-        mode.accept(this);
     }
 
     abstract createMode(): void;
