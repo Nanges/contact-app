@@ -1,10 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { defer, Observable } from 'rxjs';
+import { defer } from 'rxjs';
 import { CategoryService } from 'src/app/core/category.service';
 import { FormMode } from 'src/app/shared/form-mode/form-mode';
-import { FormModeVisitor } from 'src/app/shared/form-mode/from-mode-visitor';
+import { FormModeDirective } from 'src/app/shared/form-mode/form-mode.directive';
 import { APP_FORM } from 'src/app/shared/layout/edition-layout/tokens/app-form';
 
 @Component({
@@ -12,32 +12,7 @@ import { APP_FORM } from 'src/app/shared/layout/edition-layout/tokens/app-form';
     templateUrl: './category-form.component.html',
     styleUrls: ['./category-form.component.scss'],
 })
-export class CategoryFormComponent implements FormModeVisitor {
-    private _layoutTitle!: string;
-    get layoutTitle() {
-        return this._layoutTitle;
-    }
-
-    private _saveHandler$!: Observable<any>;
-    get saveHandler$() {
-        return this._saveHandler$;
-    }
-
-    private _removeHandler$?: Observable<any>;
-    get removeHandler$() {
-        return this._removeHandler$;
-    }
-
-    private _confirmTitle: string = '';
-    get confirmTitle() {
-        return this._confirmTitle;
-    }
-
-    private _confirmContent: string = '';
-    get confirmContent() {
-        return this._confirmContent;
-    }
-
+export class CategoryFormComponent extends FormModeDirective {
     /**
      *
      */
@@ -47,7 +22,7 @@ export class CategoryFormComponent implements FormModeVisitor {
         private route: ActivatedRoute,
         private categoryService: CategoryService
     ) {
-        mode.accept(this);
+        super(mode);
     }
 
     /**

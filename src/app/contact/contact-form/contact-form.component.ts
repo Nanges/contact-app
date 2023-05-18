@@ -6,7 +6,7 @@ import { CategoryService } from 'src/app/core/category.service';
 import { ContactService } from 'src/app/core/contact.service';
 import { Contact } from 'src/app/core/models/contact';
 import { FormMode } from 'src/app/shared/form-mode/form-mode';
-import { FormModeVisitor } from 'src/app/shared/form-mode/from-mode-visitor';
+import { FormModeDirective } from 'src/app/shared/form-mode/form-mode.directive';
 import { appForm, APP_FORM } from 'src/app/shared/layout/edition-layout/tokens/app-form';
 import { contactFormFactory } from '../contact-form';
 
@@ -15,33 +15,8 @@ import { contactFormFactory } from '../contact-form';
     templateUrl: './contact-form.component.html',
     providers: [appForm(contactFormFactory)],
 })
-export class ContactFormComponent implements FormModeVisitor {
+export class ContactFormComponent extends FormModeDirective {
     readonly categories$: Observable<string[]> = this.categoryService.getCategories();
-
-    private _layoutTitle!: string;
-    get layoutTitle() {
-        return this._layoutTitle;
-    }
-
-    private _saveHandler$!: Observable<any>;
-    get saveHandler$() {
-        return this._saveHandler$;
-    }
-
-    private _removeHandler$?: Observable<any>;
-    get removeHandler$() {
-        return this._removeHandler$;
-    }
-
-    private _confirmTitle: string = '';
-    get confirmTitle() {
-        return this._confirmTitle;
-    }
-
-    private _confirmContent: string = '';
-    get confirmContent() {
-        return this._confirmContent;
-    }
 
     /**
      *
@@ -53,7 +28,7 @@ export class ContactFormComponent implements FormModeVisitor {
         private route: ActivatedRoute,
         private categoryService: CategoryService
     ) {
-        mode.accept(this);
+        super(mode);
     }
 
     /**
