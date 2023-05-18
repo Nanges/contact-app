@@ -48,12 +48,12 @@ export class ContactFormComponent implements FormModeVisitor {
      */
     constructor(
         @Inject(APP_FORM) readonly form: FormGroup,
-        behavior: FormMode,
+        mode: FormMode,
         private contactService: ContactService,
         private route: ActivatedRoute,
         private categoryService: CategoryService
     ) {
-        behavior.accept(this);
+        mode.accept(this);
     }
 
     /**

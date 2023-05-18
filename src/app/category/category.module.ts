@@ -9,9 +9,10 @@ import { CategoryFieldsComponent } from './category-fields/category-fields.compo
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryRoutingModule } from './category-routing.module';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { CategoryFormComponent } from './category-form/category-form.component';
 
 @NgModule({
-    declarations: [CategoryListComponent, AddCategoryComponent, EditCategoryComponent, CategoryFieldsComponent],
+    declarations: [CategoryListComponent, AddCategoryComponent, EditCategoryComponent, CategoryFieldsComponent, CategoryFormComponent],
     imports: [CommonModule, CategoryRoutingModule, MaterialModule, ReactiveFormsModule, ListingLayoutModule, EditionLayoutModule],
 })
 export class CategoryModule {}

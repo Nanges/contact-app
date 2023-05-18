@@ -1,0 +1,16 @@
+<app-edition-layout layoutTitle="Edit category" appUseCancellation [appSaveHandler]="saveHandler$">
+    <app-remove-button
+        *ngIf="removeHandler$"
+        tooltip="Remove this category"
+        [appRemoveHandler]="removeHandler$"
+        [confirmTitle]="confirmTitle"
+        [confirmContent]="confirmContent"
+    ></app-remove-button>
+    <div class="form-field-wrapper" [formGroup]="form">
+        <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <input matInput placeholder="Category" formControlName="category" />
+            <mat-error *ngIf="form.get('category')?.invalid">This field is required</mat-error>
+        </mat-form-field>
+    </div>
+</app-edition-layout>

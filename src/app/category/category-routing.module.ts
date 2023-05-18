@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryResolver } from '../core/resolvers/category.resolver';
-import { AddCategoryComponent } from './add-category/add-category.component';
+import { CREATE_MODE } from '../shared/form-mode/create-mode.service';
+import { UPDATE_MODE } from '../shared/form-mode/update-mode.service';
+import { CategoryFormComponent } from './category-form/category-form.component';
 import { CategoryListComponent } from './category-list/category-list.component';
-import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 const routes: Routes = [
     {
@@ -12,14 +13,16 @@ const routes: Routes = [
     },
     {
         path: 'add',
-        component: AddCategoryComponent,
+        providers: [CREATE_MODE],
+        component: CategoryFormComponent,
     },
     {
         path: ':categoryId',
         resolve: {
             category: CategoryResolver,
         },
-        component: EditCategoryComponent,
+        providers: [UPDATE_MODE],
+        component: CategoryFormComponent,
     },
 ];
 
