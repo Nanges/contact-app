@@ -1,39 +1,33 @@
-import { Directive, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Directive, HostListener, Inject, Input, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { filter, switchMap } from 'rxjs/operators';
-import { EditionLayoutComponent } from './edition-layout/edition-layout.component';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { APP_FORM } from './tokens/app-form';
 import { BACK_COMMANDS } from './tokens/back-commands';
 
 @Directive({
     selector: 'app-edition-layout[appSaveHandler]',
 })
-export class SaveHandlerDirective implements OnInit, OnDestroy {
-    private subscription!: Subscription;
+export class SaveHandlerDirective implements OnDestroy {
+    private cancel = new Subject();
+
+    @HostListener('save')
+    save(t: any) {
+        if (!this.form.valid) return;
+        this.cancel.next(void 0);
+        this.handler$.pipe(takeUntil(this.cancel)).subscribe(() => this.router.navigate(this.back, { relativeTo: this.route }));
+    }
 
     @Input('appSaveHandler') handler$!: Observable<any>;
 
     constructor(
         @Inject(APP_FORM) private form: FormGroup,
-        private editionLayout: EditionLayoutComponent,
+        @Inject(BACK_COMMANDS) private back: any[],
         private router: Router,
-        private route: ActivatedRoute,
-        @Inject(BACK_COMMANDS) private back: any[]
+        private route: ActivatedRoute
     ) {}
 
-    ngOnInit(): void {
-        this.subscription = this.editionLayout.save
-            .asObservable()
-            .pipe(
-                filter(() => this.form.valid),
-                switchMap(() => this.handler$)
-            )
-            .subscribe(() => this.router.navigate(this.back, { relativeTo: this.route }));
-    }
-
     ngOnDestroy(): void {
-        this.subscription.unsubscribe();
+        this.cancel.next(void 0);
     }
 }
